@@ -1,19 +1,19 @@
 {
-  "name": "hello",
+  "name": "StockTickerApp",
   "version": "1.0.0",
-  "description": "my sample node app",
-  "main": "hello.js",
+  "description": "Matches stock ticker",
+  "main": "process.js",
   "scripts": {
-  "start": "node hello.js"
-},
+    "start": "node process.js"
+  },
   "repository": {
-  "type": "git",
-  "url": ""
-},
+    "type": "git",
+    "url": ""
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
-  "url": ""
-},
-  "homepage": ""
+    "url": ""
+  },
+  "homepage": "index.html"
 }
