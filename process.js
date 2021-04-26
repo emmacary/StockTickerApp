@@ -6,7 +6,7 @@ var qs = require('querystring');
 http.createServer(function (req,res)
 {	
 	//Load home page
-	 if (req.url == "https://wpnodepractice.herokuapp.com") {  
+	 if (req.url == "wpnodepractice.herokuapp.com") {  
 	 	file = 'index.html';  
 	 	fs.readFile(file, function(err, txt) {  
 	 		res.writeHead(200, {'Content-Type': 'text/html'});           
@@ -16,7 +16,7 @@ http.createServer(function (req,res)
 	 }
 
 	//Get form data
-	if (req.url == "https://wpnodepractice.herokuapp.com/process") {
+	if (req.url == "wpnodepractice.herokuapp.com/process") {
 		res.writeHead(200, {'Content-Type': 'text/html'});  
 		pdata = "";
 		req.on('data', data => {
