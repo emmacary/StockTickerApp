@@ -16,7 +16,7 @@ http.createServer(function (req,res)
 	 }
 
 	//Get form data
-	if (req.url === "/process") {
+	else if (req.url === "/process") {
 		res.writeHead(200, {'Content-Type': 'text/html'});  
 		pdata = "";
 		req.on('data', data => {
