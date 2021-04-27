@@ -6,7 +6,7 @@ var qs = require('querystring');
 http.createServer(function (req,res)
 {	
 	//Load home page
-	 if (req.url == "") {  
+	 if (req.url === "/") {  
 	 	file = 'index.html';  
 	 	fs.readFile(file, function(err, txt) {  
 	 		res.writeHead(200, {'Content-Type': 'text/html'});           
@@ -16,7 +16,7 @@ http.createServer(function (req,res)
 	 }
 
 	//Get form data
-	if (req.url == "/process") {
+	if (req.url === "/process") {
 		res.writeHead(200, {'Content-Type': 'text/html'});  
 		pdata = "";
 		req.on('data', data => {
@@ -74,7 +74,6 @@ http.createServer(function (req,res)
 	else{
 		res.writeHead(200, {'Content-Type': 'text/html'});
 		res.write ("Unknown page request");
-		res.write(req.url);
 		res.end();  
 	}
 }).listen(port);
