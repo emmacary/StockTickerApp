@@ -73,6 +73,8 @@ http.createServer(function (req,res)
 		});
 	}
 	else{
+		console.log(req.url);
+		console.log("here");
 		res.writeHead(200, {'Content-Type': 'text/html'});
 		res.write ("Unknown page request");
 		res.end();  
