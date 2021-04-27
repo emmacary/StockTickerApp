@@ -5,6 +5,7 @@ var qs = require('querystring');
 
 http.createServer(function (req,res)
 {	
+	console.log(req.url);
 	//Load home page
 	 if (req.url == "") {  
 	 	file = 'index.html';  
