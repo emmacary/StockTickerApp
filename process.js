@@ -8,9 +8,9 @@ var app = express()
 http.createServer(function (req,res)
 {	
 	//Load home page
-	 app.post('/', function(req, res) {
+	app.post('/', function(req, res) {
     	res.send('Hello Sir')
-	}) {  
+	})   
 	 // 	file = 'index.html';  
 	 // 	fs.readFile(file, function(err, txt) {  
 	 // 		res.writeHead(200, {'Content-Type': 'text/html'});           
@@ -19,65 +19,65 @@ http.createServer(function (req,res)
 	 // 	});  
 	 // }
 
-	//Get form data
-	else if (req.url === "/process") {
-		res.writeHead(200, {'Content-Type': 'text/html'});  
-		pdata = "";
-		req.on('data', data => {
-			pdata += data.toString();
-		});
+	// //Get form data
+	// else if (req.url === "/process") {
+	// 	res.writeHead(200, {'Content-Type': 'text/html'});  
+	// 	pdata = "";
+	// 	req.on('data', data => {
+	// 		pdata += data.toString();
+	// 	});
 
-		req.on('end', () => {
-			pdata = qs.parse(pdata);
-			search = pdata['search'];
-			type = pdata['c_or_t'];
-			res.write("You are searching for " + search + "<br><br>");
-			res.write("Your results are: " + "<br>");
+	// 	req.on('end', () => {
+	// 		pdata = qs.parse(pdata);
+	// 		search = pdata['search'];
+	// 		type = pdata['c_or_t'];
+	// 		res.write("You are searching for " + search + "<br><br>");
+	// 		res.write("Your results are: " + "<br>");
 			
-			//Connect to database
-			var mongo = require('mongodb');
-			var MongoClient = mongo.MongoClient;
-			const url = "mongodb+srv://emmacary17:CBSWP151515@cluster0.dzzcs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+	// 		//Connect to database
+	// 		var mongo = require('mongodb');
+	// 		var MongoClient = mongo.MongoClient;
+	// 		const url = "mongodb+srv://emmacary17:CBSWP151515@cluster0.dzzcs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
-			MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {    
-				if(err) { 
-					console.log("Connection err: " + err); 
-					return; 
-				}    
-				var dbo = db.db("companies");    
-				var collection = dbo.collection("companies");   
+	// 		MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {    
+	// 			if(err) { 
+	// 				console.log("Connection err: " + err); 
+	// 				return; 
+	// 			}    
+	// 			var dbo = db.db("companies");    
+	// 			var collection = dbo.collection("companies");   
 			
-			    //Call the query
-			    if (type == "Company") {
-			    	theQuery = {Company: search};
-			    }
-			    if (type == "Ticker") {
-			    	theQuery = {Ticker: search};
-			    }
+	// 		    //Call the query
+	// 		    if (type == "Company") {
+	// 		    	theQuery = {Company: search};
+	// 		    }
+	// 		    if (type == "Ticker") {
+	// 		    	theQuery = {Ticker: search};
+	// 		    }
 			    
-				collection.find(theQuery).toArray(function(err, items) {  
-					if (err) {
-						console.log("Error: " + err);  
-					} 
-					else {
-						if (items.length == 0){
-							res.write("None found! Either check your search for spelling mistakes, or the search you're looking for doesn't exist!");
-						}
-						else {
-							for (i=0; i<items.length; i++) {
-								res.write(items[i].Company + " has ticker " + items[i].Ticker + "<br>");  
-							}
-						}
-						res.end();
-					}     
-					db.close();
-		        });
-	        });
-		});
-	}
-	else{
-		res.writeHead(200, {'Content-Type': 'text/html'});
-		res.write ("Unknown page request");
-		res.end();  
-	}
+	// 			collection.find(theQuery).toArray(function(err, items) {  
+	// 				if (err) {
+	// 					console.log("Error: " + err);  
+	// 				} 
+	// 				else {
+	// 					if (items.length == 0){
+	// 						res.write("None found! Either check your search for spelling mistakes, or the search you're looking for doesn't exist!");
+	// 					}
+	// 					else {
+	// 						for (i=0; i<items.length; i++) {
+	// 							res.write(items[i].Company + " has ticker " + items[i].Ticker + "<br>");  
+	// 						}
+	// 					}
+	// 					res.end();
+	// 				}     
+	// 				db.close();
+	// 	        });
+	//         });
+	// 	});
+	// }
+	// else{
+	// 	res.writeHead(200, {'Content-Type': 'text/html'});
+	// 	res.write ("Unknown page request");
+	// 	res.end();  
+	// }
 }).listen(port);
