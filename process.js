@@ -24,8 +24,6 @@ http.createServer(function (req,res)
 		});
 		
 		req.on('end', () => {
-			res.write(pdata);
-
 			pdata = qs.parse(pdata);
 			search = pdata['search'];
 			type = pdata['c_or_t'];
@@ -34,18 +32,20 @@ http.createServer(function (req,res)
 			res.write("You are searching for " + search + "<br><br>");
 			res.write("Your results are: " + "<br>");
 
-			res.end();
 			
-			// //Connect to database
-			// var mongo = require('mongodb');
-			// var MongoClient = mongo.MongoClient;
-			// const url = "mongodb+srv://emmacary17:CBSWP151515@cluster0.dzzcs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+			
+			//Connect to database
+			var mongo = require('mongodb');
+			var MongoClient = mongo.MongoClient;
+			const url = "mongodb+srv://emmacary17:CBSWP151515@cluster0.dzzcs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
-			// MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {    
-			// 	if(err) { 
-			// 		console.log("Connection err: " + err); 
-			// 		return; 
-			// 	}    
+			MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {    
+				if(err) { 
+					console.log("Connection err: " + err); 
+					return; 
+				}
+			}
+			res.end();    
 			// 	var dbo = db.db("companies");    
 			// 	var collection = dbo.collection("companies");   
 			
