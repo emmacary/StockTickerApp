@@ -23,11 +23,12 @@ http.createServer(function (req,res)
 		req.on('data', data => {
 			pdata += data.toString();
 		});
-
+		res.write(pdata);
 		req.on('end', () => {
 			pdata = qs.parse(pdata);
 			search = pdata['search'];
 			type = pdata['c_or_t'];
+		}
 		// 	res.write("You are searching for " + search + "<br><br>");
 		// 	res.write("Your results are: " + "<br>");
 			
