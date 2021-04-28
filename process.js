@@ -36,46 +36,45 @@ http.createServer(function (req,res)
 			
 			//Connect to database
 			var mongo = require('mongodb');
-			// var MongoClient = mongo.MongoClient;
-			// const url = "mongodb+srv://emmacary17:CBSWP151515@cluster0.dzzcs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+			var MongoClient = mongo.MongoClient;
+			const url = "mongodb+srv://emmacary17:CBSWP151515@cluster0.dzzcs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
-			// MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {    
-			// 	if(err) { 
-			// 		console.log("Connection err: " + err); 
-			// 		return; 
-			// 	}
-			// }
-			res.write("success");
-			res.end();    
-			// 	var dbo = db.db("companies");    
-			// 	var collection = dbo.collection("companies");   
+			MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {    
+				if(err) { 
+					console.log("Connection err: " + err); 
+					return; 
+				}
 			
-			//     //Call the query
-			//     if (type == "Company") {
-			//     	theQuery = {Company: search};
-			//     }
-			//     if (type == "Ticker") {
-			//     	theQuery = {Ticker: search};
-			//     }
+ 
+				var dbo = db.db("companies");    
+				var collection = dbo.collection("companies");   
+			
+			    //Call the query
+			    if (type == "Company") {
+			    	theQuery = {Company: search};
+			    }
+			    if (type == "Ticker") {
+			    	theQuery = {Ticker: search};
+			    }
 			    
-			// 	collection.find(theQuery).toArray(function(err, items) {  
-			// 		if (err) {
-			// 			console.log("Error: " + err);  
-			// 		} 
-			// 		else {
-			// 			if (items.length == 0){
-			// 				res.write("None found! Either check your search for spelling mistakes, or the search you're looking for doesn't exist!");
-			// 			}
-			// 			else {
-			// 				for (i=0; i<items.length; i++) {
-			// 					res.write(items[i].Company + " has ticker " + items[i].Ticker + "<br>");  
-			// 				}
-			// 			}
-			// 			res.end();
-			// 		}     
-			// 		db.close();
-		 //        });
-	        // });
+				collection.find(theQuery).toArray(function(err, items) {  
+					if (err) {
+						console.log("Error: " + err);  
+					} 
+					else {
+						if (items.length == 0){
+							res.write("None found! Either check your search for spelling mistakes, or the search you're looking for doesn't exist!");
+						}
+						else {
+							for (i=0; i<items.length; i++) {
+								res.write(items[i].Company + " has ticker " + items[i].Ticker + "<br>");  
+							}
+						}
+						res.end();
+					}     
+					db.close();
+		        });
+	        });
 		});
 	}
 	else{
