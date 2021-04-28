@@ -19,10 +19,10 @@ http.createServer(function (req,res)
 	else if (req.url === "/process") {
 		res.writeHead(200, {'Content-Type': 'text/html'});
 		res.write("here");  
-		// pdata = "";
-		// req.on('data', data => {
-		// 	pdata += data.toString();
-		// });
+		pdata = "";
+		req.on('data', data => {
+			pdata += data.toString();
+		});
 
 		// req.on('end', () => {
 		// 	pdata = qs.parse(pdata);
