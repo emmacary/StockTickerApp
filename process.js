@@ -35,7 +35,7 @@ http.createServer(function (req,res)
 			
 			
 			//Connect to database
-			// var mongo = require('mongodb');
+			var mongo = require('mongodb');
 			// var MongoClient = mongo.MongoClient;
 			// const url = "mongodb+srv://emmacary17:CBSWP151515@cluster0.dzzcs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
