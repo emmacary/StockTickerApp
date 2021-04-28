@@ -2,18 +2,22 @@ var http = require('http');
 var port = process.env.PORT || 3000;
 var fs = require('fs');
 var qs = require('querystring');
+var express = require('express')
+var app = express()
 
 http.createServer(function (req,res)
 {	
 	//Load home page
-	 if (req.url === "/") {  
-	 	file = 'index.html';  
-	 	fs.readFile(file, function(err, txt) {  
-	 		res.writeHead(200, {'Content-Type': 'text/html'});           
-	 		res.write(txt);          
-	 		res.end();  
-	 	});  
-	 }
+	 app.post('/', function(req, res) {
+    	res.send('Hello Sir')
+	}) {  
+	 // 	file = 'index.html';  
+	 // 	fs.readFile(file, function(err, txt) {  
+	 // 		res.writeHead(200, {'Content-Type': 'text/html'});           
+	 // 		res.write(txt);          
+	 // 		res.end();  
+	 // 	});  
+	 // }
 
 	//Get form data
 	else if (req.url === "/process") {
