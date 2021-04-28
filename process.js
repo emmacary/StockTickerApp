@@ -45,6 +45,7 @@ http.createServer(function (req,res)
 					return; 
 				}
 			}
+			res.write("success");
 			res.end();    
 			// 	var dbo = db.db("companies");    
 			// 	var collection = dbo.collection("companies");   
