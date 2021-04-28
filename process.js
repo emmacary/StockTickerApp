@@ -22,9 +22,10 @@ http.createServer(function (req,res)
 		var pdata = "";
 		req.on('data', data => {
 			pdata += data.toString();
+			res.write(pdata);
 		});
 		res.write("now here");
-		res.write(pdata);
+		
 		// req.on('end', () => {
 		// 	pdata = qs.parse(pdata);
 		// 	search = pdata['search'];
