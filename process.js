@@ -29,10 +29,12 @@ http.createServer(function (req,res)
 			pdata = qs.parse(pdata);
 			search = pdata['search'];
 			type = pdata['c_or_t'];
-			res.end();
 
-			// res.write("You are searching for " + search + "<br><br>");
-			// res.write("Your results are: " + "<br>");
+
+			res.write("You are searching for " + search + "<br><br>");
+			res.write("Your results are: " + "<br>");
+
+			res.end();
 			
 			// //Connect to database
 			// var mongo = require('mongodb');
