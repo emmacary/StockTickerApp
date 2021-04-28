@@ -39,12 +39,12 @@ http.createServer(function (req,res)
 			var MongoClient = mongo.MongoClient;
 			const url = "mongodb+srv://emmacary17:CBSWP151515@cluster0.dzzcs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
-			MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {    
-				if(err) { 
-					console.log("Connection err: " + err); 
-					return; 
-				}
-			}
+			// MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {    
+			// 	if(err) { 
+			// 		console.log("Connection err: " + err); 
+			// 		return; 
+			// 	}
+			// }
 			res.write("success");
 			res.end();    
 			// 	var dbo = db.db("companies");    
